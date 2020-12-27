@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cinema_booking_1888">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="cinema_booking_1888"
         android:icon="@mipmap/ic_launcher">
