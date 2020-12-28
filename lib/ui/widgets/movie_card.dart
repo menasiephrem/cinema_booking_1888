@@ -44,7 +44,7 @@ class MovieCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(movie.title, style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w500),),
-                Text(movie.runtime, style: TextStyle(fontSize: 10),)
+                Text(movie.runtime, style: TextStyle(fontSize: 10, fontWeight: FontWeight.w300),)
               ],
             ),
           )

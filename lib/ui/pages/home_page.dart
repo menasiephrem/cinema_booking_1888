@@ -31,20 +31,16 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Now Showing",
-          style: TextStyle(color: Colors.white),
-        ),
+        title: Text("Now Showing"),
       ),
       body: _movies != null?
         GridView.count(
           crossAxisCount: 2,
-          childAspectRatio: MediaQuery.of(context).size.height / 1000,
+          childAspectRatio: 0.57,
           children: _movies.map<Widget>((e){
             return MovieCard(e); 
           }).toList(),

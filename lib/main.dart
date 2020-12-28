@@ -15,8 +15,16 @@ class MyApp extends StatelessWidget {
       title: '',
       debugShowCheckedModeBanner: false,
        theme: ThemeData(
-        primaryColor: const Color(0xff00befd),
+        primaryColor: const Color(0xff2AC7F8),
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        primaryTextTheme: TextTheme(
+          headline6: TextStyle(
+            color: Colors.white
+          )
+        ),
+        primaryIconTheme: const IconThemeData.fallback().copyWith(
+          color: Colors.white,
+        ),
       ),
       home: HomePage(),
     );
