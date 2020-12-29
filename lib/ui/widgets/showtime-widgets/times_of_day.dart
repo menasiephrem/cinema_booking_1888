@@ -1,4 +1,4 @@
-import 'package:cinema_booking_1888/ui/widgets/time_widget.dart';
+import 'package:cinema_booking_1888/ui/widgets/showtime-widgets/time_widget.dart';
 import 'package:flutter/material.dart';
 
 class TimesOfDay extends StatefulWidget {

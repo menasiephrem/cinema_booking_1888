@@ -1,9 +1,9 @@
 import 'package:cinema_booking_1888/models/movie.dart';
 import 'package:cinema_booking_1888/services/movie_services.dart';
 import 'package:cinema_booking_1888/ui/pages/seat_selector.dart';
-import 'package:cinema_booking_1888/ui/widgets/days_of_week.dart';
-import 'package:cinema_booking_1888/ui/widgets/movie_genre_bubles.dart';
-import 'package:cinema_booking_1888/ui/widgets/times_of_day.dart';
+import 'package:cinema_booking_1888/ui/widgets/showtime-widgets/days_of_week.dart';
+import 'package:cinema_booking_1888/ui/widgets/movie_widgets/movie_genre_bubles.dart';
+import 'package:cinema_booking_1888/ui/widgets/showtime-widgets/times_of_day.dart';
 import 'package:flutter/material.dart';
 
 import '../../finder.dart';
