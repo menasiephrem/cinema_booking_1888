@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import '../../../finder.dart';
 
 class Block extends StatefulWidget {
-  Block();
+  Block(this.ticketCounter);
+
+  final Function ticketCounter;
   @override
   _BlockState createState() => _BlockState();
 }
@@ -42,6 +44,7 @@ class _BlockState extends State<Block> {
     setState(() {
       _selected = _selected;
     });
+    this.widget.ticketCounter(_selected.length);
   }
 
   @override
@@ -52,7 +55,7 @@ class _BlockState extends State<Block> {
        width: MediaQuery.of(context).size.width - 20,
        padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
        height: 17 * _booking.row * 1.0,
-       constraints: BoxConstraints(minHeight: 40 * _booking.row * 1.0, maxWidth: 400),
+       constraints: BoxConstraints(minHeight: 28 * _booking.row * 1.0, maxWidth: double.infinity),
        child: 
        GridView.count(
           crossAxisCount: _booking.column,

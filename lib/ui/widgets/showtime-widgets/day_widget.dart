@@ -16,7 +16,7 @@ class Day extends StatelessWidget {
       height: 73,
       decoration: BoxDecoration(
         border: Border.all(
-          color: selected? const Color(0xff2AC7F8):  Colors.grey[200],
+          color: selected? Color(0xff2AC7F8):  Color(0xffD1D6D8),
           width: 2, 
         ),
         borderRadius: BorderRadius.all(Radius.circular(9))
@@ -26,7 +26,7 @@ class Day extends StatelessWidget {
           Container(
             height: 21,
             width: 63,
-            color: selected? Color(0xff2AC7F8):  Colors.grey[200],
+            color: selected? Color(0xff2AC7F8):  Color(0xffD1D6D8),
             child: Text(
               DateFormat('EEE').format(day).toString().toUpperCase(),
               textAlign: TextAlign.center,
@@ -40,7 +40,7 @@ class Day extends StatelessWidget {
               DateFormat('dd').format(day).toString().toUpperCase(),
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 26, fontWeight: FontWeight.w700, color: selected? Colors.black:  Colors.grey[200]
+                fontSize: 26, fontWeight: FontWeight.w700, color: selected? Colors.black:  Color(0xffD1D6D8)
               ),
             ),
           ),

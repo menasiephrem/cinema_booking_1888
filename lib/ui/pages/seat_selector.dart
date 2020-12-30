@@ -1,5 +1,6 @@
 import 'package:cinema_booking_1888/models/movie.dart';
 import 'package:cinema_booking_1888/ui/widgets/seat/block.dart';
+import 'package:cinema_booking_1888/ui/widgets/seat/single_seat.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -13,6 +14,17 @@ class SeatBooking extends StatefulWidget {
 
 class _SeatBookingState extends State<SeatBooking> {
 
+
+  int _totalTickets = 0;
+  int _price = 50;
+
+
+  _ticketCounter(int count){
+    setState(() {
+      _totalTickets = count;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,13 +32,11 @@ class _SeatBookingState extends State<SeatBooking> {
         title: Text("Seat Selector"),
       ),
       body: 
-      Container(
-        height: double.infinity,
-        color: Colors.white,
+      SingleChildScrollView(
         child: 
-          SingleChildScrollView(
-                  child: 
-            Column(
+           Column(
+             children: [
+             Column(
               children: [
                 Container(
                         width: MediaQuery.of(context).size.width,
@@ -72,7 +82,7 @@ class _SeatBookingState extends State<SeatBooking> {
                   ),
                 SizedBox(height: 40,),  
                 Text(
-                  "Hall 1: Block A", //TODO this info should come from the API
+                  "Hall 1: Block A", //this info should come from the API
                   style: TextStyle(
                     fontSize: 18, fontWeight: FontWeight.w600
                   ),
@@ -85,12 +95,162 @@ class _SeatBookingState extends State<SeatBooking> {
                   ),
                 ),
                 SizedBox(height: 5,),
-                Block()
-                // Text("works")    
+                Block(_ticketCounter),
+                SizedBox(height: 15,), 
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 50),
+                  width: double.infinity,
+                  height: 20,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        width: 24,
+                        child:Seat(false, false,)
+                      ),
+                      SizedBox(width: 2,),
+                      Text(
+                        "Available",
+                        style: TextStyle(
+                          fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        width: 24,
+                        child:Seat(true, false,)
+                      ),
+                      SizedBox(width: 2,),
+                      Text(
+                        "Booked",
+                        style: TextStyle(
+                          fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400
+                        ),
+                      ),
+                      SizedBox(width: 8,),
+                      Container(
+                        width: 24,
+                        child:Seat(false, true,)
+                      ),
+                      SizedBox(width: 2,),
+                      Text(
+                        "Your Selection",
+                        style: TextStyle(
+                          fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(height: 15,), 
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                        width: 24,
+                        height: 20,
+                        child:Seat(false, false,)
+                      ),
+                    SizedBox(width: 2,),
+                    Text(
+                      "Not-Available on Meda",
+                      style: TextStyle(
+                        fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(height: 50,),  
+                Container(
+                  width: double.infinity,
+                  height: 60,
+                  margin: EdgeInsets.symmetric(horizontal: 30),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Color(0xffF0F0F1),
+                      width: 2, 
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(30))
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(width: 8,),
+                      Container(
+                        child: 
+                          Text(
+                            "TICKET\nQTY",
+                            style: TextStyle(
+                              fontSize: 12, fontWeight: FontWeight.w500, 
+                            ), textAlign: TextAlign.right,
+                          ),
+                      ),
+                      SizedBox(width: 8,),
+                      Text(
+                        "$_totalTickets",
+                        style: TextStyle(
+                          fontSize: 26, fontWeight: FontWeight.w500, 
+                        ),
+                      ),
+                      SizedBox(width: 5,),
+                      Icon(Icons.keyboard_arrow_down, size: 40,),
+                      SizedBox(width: 8,),
+                      Container(
+                        width: 1,
+                        height: 30,
+                        color:  Color(0xffC4C9DF)
+                      ),
+                      SizedBox(width: 8,),
+                      Text(
+                        "TOTAL\nPAYABLE",
+                        style: TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w500, 
+                        ), textAlign: TextAlign.right,
+                      ),
+                      SizedBox(width: 8,),
+                      Flexible(
+                        child:
+                        Text(
+                          "${_totalTickets * _price}Br",
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 26, fontWeight: FontWeight.w500, 
+                          ),
+                        )
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 50,), 
               ],
-            ),     
+            ),
+            InkWell(
+              onTap: (){},
+              child:
+                Container(         
+                  width: MediaQuery.of(context).size.width, 
+                  height: 57,
+                  color: Color(0xff2AC7F8),
+                  child: 
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                            "Continue to ticket page",
+                            style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.w600, color: Colors.white
+                            ),
+                            textAlign: TextAlign.start,
+                        ),
+                        Icon(Icons.arrow_forward_outlined, color: Colors.white, size: 30,)
+                      ],
+                    ),
+                )              
+            )   
+          ],
+         )  
         )        ,
-      )
     );
   }
 }
