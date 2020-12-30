@@ -1,4 +1,6 @@
 import 'package:cinema_booking_1888/models/movie.dart';
+import 'package:cinema_booking_1888/models/ticket.dart';
+import 'package:cinema_booking_1888/ui/pages/ticket_page.dart';
 import 'package:cinema_booking_1888/ui/widgets/seat/block.dart';
 import 'package:cinema_booking_1888/ui/widgets/seat/single_seat.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +19,22 @@ class _SeatBookingState extends State<SeatBooking> {
 
   int _totalTickets = 0;
   int _price = 50;
+  List<String> _seats = [];
 
 
-  _ticketCounter(int count){
+  _ticketCounter(List<String> tickets){
     setState(() {
-      _totalTickets = count;
+      _totalTickets = tickets.length;
+      _seats = tickets;
     });
+  }
+
+  _goToTicketPage(){
+    Ticket ticket = Ticket(this.widget.movie, _seats, this.widget.time, _totalTickets * _price);
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => TicketPage(ticket),
+    ));
   }
 
   @override
@@ -226,7 +238,7 @@ class _SeatBookingState extends State<SeatBooking> {
               ],
             ),
             InkWell(
-              onTap: (){},
+              onTap:_goToTicketPage,
               child:
                 Container(         
                   width: MediaQuery.of(context).size.width, 

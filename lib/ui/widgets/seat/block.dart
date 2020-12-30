@@ -44,7 +44,7 @@ class _BlockState extends State<Block> {
     setState(() {
       _selected = _selected;
     });
-    this.widget.ticketCounter(_selected.length);
+    this.widget.ticketCounter(_selected);
   }
 
   @override
