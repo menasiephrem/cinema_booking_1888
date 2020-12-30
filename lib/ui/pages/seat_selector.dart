@@ -1,10 +1,14 @@
 import 'package:cinema_booking_1888/models/movie.dart';
 import 'package:cinema_booking_1888/models/ticket.dart';
+import 'package:cinema_booking_1888/services/seat_services.dart';
 import 'package:cinema_booking_1888/ui/pages/ticket_page.dart';
 import 'package:cinema_booking_1888/ui/widgets/seat/block.dart';
 import 'package:cinema_booking_1888/ui/widgets/seat/single_seat.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+
+import '../../finder.dart';
 
 class SeatBooking extends StatefulWidget {
   SeatBooking(this.movie, this.time);
@@ -15,6 +19,7 @@ class SeatBooking extends StatefulWidget {
 }
 
 class _SeatBookingState extends State<SeatBooking> {
+   SeatService _seatService = locator<SeatService>();
 
 
   int _totalTickets = 0;
@@ -29,12 +34,30 @@ class _SeatBookingState extends State<SeatBooking> {
     });
   }
 
+  _showToast(String message,bool error){
+    Fluttertoast.showToast(
+      msg: '$message',
+       toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: error? Colors.red: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+}
+
   _goToTicketPage(){
+    if(_totalTickets == 0){
+      _showToast("Please select one or more seats", true);
+      return;
+    }
     Ticket ticket = Ticket(this.widget.movie, _seats, this.widget.time, _totalTickets * _price);
     Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => TicketPage(ticket),
     ));
+    _seatService.saveTicket(ticket);
+    _showToast("Ticket Saved Sucessfuly", false);
   }
 
   @override
